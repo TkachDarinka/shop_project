@@ -8,16 +8,19 @@ import java.util.Objects;
 // Он может содержать любое количество полей и методов, которые не обязательно должны быть приватными или публичными.
 // POJO обычно используется для инкапсуляции бизнес-логики в приложениях
 public class Customer {
-    private final Long id;
+    private Long id;
     private boolean activity;
     private String name;
     private List<Product> products = new ArrayList<>();
 
-    public Customer(Long id, boolean activity, String name, List<Product> products) {
-        this.id = id;
+    public Customer(boolean activity, String name, List<Product> products) {
         this.activity = activity;
         this.name = name;
         this.products = products;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
