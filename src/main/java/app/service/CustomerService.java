@@ -9,7 +9,7 @@ public interface CustomerService {
 
     Customer create(Customer customer); //Сохранить покупателя в базе данных (при сохранении покупатель автоматически считается активным).
 
-    List<Customer> readAllActiveCustomer(); //Вернуть всех покупателей из базы данных (активных).
+    List<Customer> getAllActiveCustomer(); //Вернуть всех покупателей из базы данных (активных).
 
     Customer getById(Long id); //Вернуть одного покупателя из базы данных по его идентификатору (если он активен).
 
@@ -23,14 +23,14 @@ public interface CustomerService {
 
     long getActiveCustomersTotalCount(); //Вернуть общее количество покупателей в базе данных (активных).
 
-    double getTotalCostShoppingCartActiveCustomersById(); //Вернуть стоимость корзины покупателя по его идентификатору (если он активен). (без аргумента, так как используем метод getActiveCustomersTotalCount())
+    double getTotalCostShoppingCart(Long id); //Вернуть стоимость корзины покупателя по его идентификатору (если он активен). (без аргумента, так как используем метод getActiveCustomersTotalCount())
 
-    double getAverageCostProductActiveCustomersById(); //Вернуть среднюю стоимость продукта в корзине покупателя по его идентификатору (если он активен)
+    double getAverageCostProduct(Long id); //Вернуть среднюю стоимость продукта в корзине покупателя по его идентификатору (если он активен)
 
-    void addProductToShoppingCart(); //Добавить товар в корзину покупателя по их идентификаторам (если оба активны)
+    void addProductToShoppingCart(Long customerId, Long productId); //Добавить товар в корзину покупателя по их идентификаторам (если оба активны)
 
-    void deleteProductFromShoppingCart(); //Удалить товар из корзины покупателя по их идентификаторам
+    void deleteProductFromShoppingCart(Long customerId, Long productId); //Удалить товар из корзины покупателя по их идентификаторам
 
-    void clearShoppingCart(); //Полностью очистить корзину покупателя по его идентификатору (если он активен)
+    void clearShoppingCart(Long customerId); //Полностью очистить корзину покупателя по его идентификатору (если он активен)
 
 }

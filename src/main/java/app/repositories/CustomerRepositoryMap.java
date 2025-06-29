@@ -54,5 +54,12 @@ public class CustomerRepositoryMap implements CustomerRepository{
         return true;
     }
 
+    @Override
+    public boolean existsByName(String name) {
+        return false;
+    }
+
+
+
 
 }

@@ -5,6 +5,7 @@ import app.domain.Customer;
 import java.util.List;
 
 public interface CustomerRepository {
+
     Customer save(Customer customer);
 
     List<Customer> findAll();
@@ -15,4 +16,5 @@ public interface CustomerRepository {
 
     boolean deleteById(Long id);
 
+    boolean existsByName(String name);
 }
