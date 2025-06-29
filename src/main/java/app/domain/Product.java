@@ -60,12 +60,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", activity=" + activity +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+        return "\u001B[32m\" Product: \n" +
+                "  id       = " + id + ",\n" +
+                "  isActive = " + isActivity() + ",\n" +
+                "  name     = " + name + "\n" +
+                "  price    = " + price + "\u001B[0m\n";
     }
 
     public Product(String name, double price) {

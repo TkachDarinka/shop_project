@@ -9,48 +9,48 @@ import java.util.Map;
 
 public class CustomerRepositoryMap implements CustomerRepository{
 
-    private Map<Long, Customer> database = new HashMap<>();
-    private long currentId = 0;
+    private Map<Long, Customer> database = new HashMap<>(); //Создаётся приватное поле — карта (словарь), где ключ — id клиента, а значение — объект Customer. Это "имитация" базы данных в оперативной памяти.
+    private long currentId = 0; //Переменная для хранения текущего максимального id. Используется для генерации новых id при сохранении клиентов.
 
     @Override
-    public Customer save(Customer customer) {
-        customer.setId(++currentId);
-        database.put(currentId, customer);
-        return customer;
+    public Customer save(Customer customer) { //Метод сохраняет нового клиента:
+        customer.setId(++currentId); //Увеличивает currentId на 1 и присваивает его объекту customer
+        database.put(currentId, customer); //Кладёт customer в "базу" по новому id.
+        return customer; //Возвращает сохранённого клиента.
     }
 
     @Override
-    public List<Customer> findAll() {
+    public List<Customer> findAll() { //Возвращает список всех клиентов из "базы".
         return new ArrayList<>(database.values());
     }
 
     @Override
-    public Customer findById(Long id) {
+    public Customer findById(Long id) { //Находит клиента по id. Если такого id нет — вернёт null.
         return database.get(id);
     }
 
     @Override
-    public Customer update(Customer customer) {
-        Long id = customer.getId();
-        String newName = customer.getName();
+    public Customer update(Customer customer) { //Обновляет данные клиента:
+        Long id = customer.getId(); //находим клиента по id
+        String newName = customer.getName(); //метод getName() у объекта customer возвращает текущее имя клиента. результат работы метода (имя клиента) сохраняется в новую локальную переменную newName типа String
 
-        Customer oldProduct = findById(id);
+        Customer oldProduct = findById(id); //Находит клиента по id. Результат работы метода сохраняется в переменную oldProduct типа Customer
 
         if (oldProduct != null) {
-            oldProduct.setName(newName);
+            oldProduct.setName(newName); //если найден, обновляем имя
         }
 
-        return oldProduct;
+        return oldProduct; // возвращаем обновлённого клиента или null
     }
 
     @Override
     public boolean deleteById(Long id) {
-        Customer oldProduct = findById(id);
+        Customer oldProduct = findById(id); // ищем клиента по id
 
-        if (oldProduct == null) {
+        if (oldProduct == null) { //Проверяется, найден ли клиент. Если не найден (oldProduct == null)
             return false;
         }
-        oldProduct.setActivity(false);
+        oldProduct.setActivity(false); //Если клиент найден, его "активность" устанавливается в false
         return true;
     }
 
